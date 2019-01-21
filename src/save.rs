@@ -20,7 +20,7 @@ pub fn save_preview(dir_name: String, file_path: String, filename: String) -> (S
     match image::open(file_path) {
         Ok(mut img) => {
             img = img.resize_exact(100, 100, FilterType::Nearest);
-            match img.save(format!("{}/previews/{}", dir_name, filename)) {
+            match img.save(format!("{}/previews/prv_{}", dir_name, filename)) {
                 Ok(_ok) => (Status::Ok, Cursor::new(SUCCESS_MSG.to_string())),
                 Err(err) => save_preview_err_case(filename, err.to_string())
             }
